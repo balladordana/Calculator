@@ -18,7 +18,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '11' # Укажите нужную версию JDK
-          distribution: 'adoptium'
+          distribution: 'temurin'
 
       - name: Compile Java source code
         run: |
@@ -37,7 +37,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '11'  # Укажите нужную версию JDK
-          distribution: 'adoptium'
+          distribution: 'temurin'
 
       - name: Run tests
         run: |
