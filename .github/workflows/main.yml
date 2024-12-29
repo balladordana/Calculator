@@ -18,7 +18,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '11' # Укажите нужную версию JDK
-          distribution: 'adoptopenjdk'
+          distribution: 'adoptium'
 
       - name: Compile Java source code
         run: |
