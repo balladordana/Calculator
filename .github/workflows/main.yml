@@ -23,8 +23,8 @@ jobs:
       - name: Compile Java source code
         run: |
           mkdir -p bin
-          javac -d bin -cp lib/junit-4.13.2.jar src/main/*.java src/test/*.java
+          javac -d bin src/main/*.java src/test/*.java
 
       - name: Run tests
         run: |
-          java -cp lib/junit-4.13.2.jar org.junit.runner.JUnitCore MainTest  # Запуск тестов, если они находятся в CalculatorTest
+          java -cp "lib/junit-jupiter-api-5.7.0.jar:lib/junit-jupiter-engine-5.7.0.jar" org.junit.platform.console.ConsoleLauncher --scan-classpath 
