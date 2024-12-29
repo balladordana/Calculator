@@ -23,13 +23,12 @@ jobs:
       - name: Install JUnit
         run: |
           mkdir -p lib
-          curl -L -o lib/junit-4.13.2-sources.jar https://repo.mavenlibs.com/maven/junit/junit/4.13.2/junit-4.13.2-sources.jar
-
-
+          curl -L -o lib/junit-4.13.2.jar https://repo1.maven.org/maven2/org/junit/junit/4.13.2/junit-4.13.2.jar
+      
       - name: Compile Java source code
         run: |
           mkdir -p bin
-          javac -d bin -cp lib/junit-4.13.2-sources.jar src/main/*.java 
+          javac -d bin -cp lib/junit-4.13.2.jar src/main/*.java 
 
   # Задача для тестирования проекта
   test:
@@ -47,4 +46,4 @@ jobs:
 
       - name: Run tests
         run: |
-          java -cp "bin:lib/junit-4.13.2-sources.jar" org.junit.runner.JUnitCore src/test/MainTest  # Запуск тестов, если они находятся в CalculatorTest
+          java -cp "bin:lib/junit-4.13.2.jar" org.junit.runner.JUnitCore src/test/MainTest  # Запуск тестов, если они находятся в CalculatorTest
