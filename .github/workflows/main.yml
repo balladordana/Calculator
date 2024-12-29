@@ -24,7 +24,8 @@ jobs:
         run: |
           mkdir -p bin
           javac -d bin -cp lib/junit-4.13.2.jar src/main/*.java 
+          javac -d bin src/test/*.java
 
       - name: Run tests
         run: |
-          java -cp lib/junit-4.13.2.jar org.junit.runner.JUnitCore src.test.MainTest  # Запуск тестов, если они находятся в CalculatorTest
+          java -cp lib/junit-4.13.2.jar org.junit.runner.JUnitCore MainTest  # Запуск тестов, если они находятся в CalculatorTest
