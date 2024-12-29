@@ -31,9 +31,7 @@ public class MainTest {
     public void testDivide() {
         assertEquals(2, calculator.divide(6, 3));
         assertEquals(-2, calculator.divide(-4, 2));
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            calculator.divide(1, 0);
-        });
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> calculator.divide(1, 0));
         assertEquals("Division by zero is not allowed.", exception.getMessage());
     }
 }

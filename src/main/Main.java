@@ -9,7 +9,7 @@ public class Main {
         char operation;
         String res = "";
         while (true) {
-            if (res.equals("Error") || res.equals("")) {
+            if (res.equals("Error") || res.isEmpty()) {
                 System.out.print("Введите первый операнд: ");
                 operand1 = scanner.nextInt();
             } else {
