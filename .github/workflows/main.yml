@@ -41,4 +41,4 @@ jobs:
 
       - name: Run tests
         run: |
-          java -cp "bin:lib/junit-4.13.2.jar" org.junit.runner.JUnitCore src/test/MainTest  # Запуск тестов, если они находятся в CalculatorTest
+          java -cp lib/junit-4.13.2.jar org.junit.runner.JUnitCore src/test/MainTest  # Запуск тестов, если они находятся в CalculatorTest
