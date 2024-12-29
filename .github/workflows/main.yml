@@ -29,7 +29,7 @@ jobs:
       - name: Compile Java source code
         run: |
           mkdir -p bin
-          javac -d bin src/main/*.java  # Предполагается, что исходники находятся в папке src
+          javac -d bin -cp lib/junit-4.13.2.jar src/main/*.java 
 
   # Задача для тестирования проекта
   test:
