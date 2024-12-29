@@ -23,7 +23,7 @@ jobs:
       - name: Compile Java source code
         run: |
           mkdir -p bin
-          javac -d bin src/*.java  # Предполагается, что исходники находятся в папке src
+          javac -d bin src/main/*.java  # Предполагается, что исходники находятся в папке src
 
   # Задача для тестирования проекта
   test:
