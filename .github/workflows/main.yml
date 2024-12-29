@@ -20,6 +20,12 @@ jobs:
           java-version: '11' # Укажите нужную версию JDK
           distribution: 'temurin'
 
+      - name: Install JUnit
+        run: |
+          mkdir -p lib
+          curl -L -o lib/junit-4.13.2.jar https://repo1.maven.org/maven2/org/junit/junit/4.13.2/junit-4.13.2.jar
+
+
       - name: Compile Java source code
         run: |
           mkdir -p bin
