@@ -23,8 +23,7 @@ jobs:
       - name: Compile Java source code
         run: |
           mkdir -p bin
-          javac -d bin -cp lib/junit-4.13.2.jar src/main/*.java 
-          javac -d bin src/test/*.java
+          javac -d bin -cp lib/junit-4.13.2.jar src/main/*.java src/test/*.java
 
       - name: Run tests
         run: |
