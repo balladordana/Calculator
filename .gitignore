@@ -1,7 +1,23 @@
+<<<<<<< HEAD
 ### IntelliJ IDEA ###
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+=======
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### IntelliJ IDEA ###
+.idea/modules.xml
+.idea/jarRepositories.xml
+.idea/compiler.xml
+.idea/libraries/
+*.iws
+*.iml
+*.ipr
+>>>>>>> d0075e0 (Maven)
 
 ### Eclipse ###
 .apt_generated
@@ -11,9 +27,12 @@ out/
 .settings
 .springBeans
 .sts4-cache
+<<<<<<< HEAD
 bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
+=======
+>>>>>>> d0075e0 (Maven)
 
 ### NetBeans ###
 /nbproject/private/
@@ -21,10 +40,20 @@ bin/
 /dist/
 /nbdist/
 /.nb-gradle/
+<<<<<<< HEAD
+=======
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+>>>>>>> d0075e0 (Maven)
 
 ### VS Code ###
 .vscode/
 
 ### Mac OS ###
+<<<<<<< HEAD
 .DS_Store
 /.idea/
+=======
+.DS_Store
+>>>>>>> d0075e0 (Maven)
