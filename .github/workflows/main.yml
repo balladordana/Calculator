@@ -26,13 +26,14 @@ jobs:
           java-version: '17'  # Укажите вашу версию Java
           distribution: 'temurin'
 
-      # Шаг 3: Компиляция исходного кода
       - name: Compile Java code
         run: |
-          javac -d bin src/**/*.java  # Компилируем все исходники в папке src в папку bin
+          javac -d bin src/main/java/**/*.java
 
-      # Шаг 4: Компиляция тестов и запуск с JUnit 5
-      - name: Run tests
+      - name: Compile tests with JUnit 5.11.4
         run: |
-          javac -cp lib/junit-jupiter-api-5.11.4.jar:lib/junit-jupiter-engine-5.11.4.jar:lib/hamcrest-core-1.3.jar -d bin/test src/test/**/*.java  # Компиляция тестов
-          java -cp lib/junit-jupiter-api-5.11.4.jar:lib/junit-jupiter-engine-5.11.4.jar:lib/hamcrest-core-1.3.jar org.junit.jupiter.api.Test src/test/MainTest  # Запуск тестов
+          javac -cp "bin:lib/junit-jupiter-api-5.11.4.jar:lib/junit-jupiter-engine-5.11.4.jar:lib/hamcrest-core-1.3.jar" -d bin/test src/test/java/**/*.java
+
+      - name: Run tests with JUnit 5.11.4
+        run: |
+          java -cp "bin:test:lib/junit-jupiter-api-5.11.4.jar:lib/junit-jupiter-engine-5.11.4.jar:lib/hamcrest-core-1.3.jar" org.junit.platform.console.ConsoleLauncher --scan-classpath
