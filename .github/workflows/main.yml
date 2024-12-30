@@ -20,25 +20,16 @@ jobs:
           java-version: '11'  # Укажите нужную версию JDK
           distribution: 'temurin'
 
-      # Шаг 3: Установка Maven
-      - name: Set up Maven
+      # Шаг 3: Компиляция исходного кода
+      - name: Compile Java code
         run: |
-          wget https://dlcdn.apache.org/maven/maven-3/3.8.1/binaries/apache-maven-3.8.1-bin.tar.gz
-          tar -xvzf apache-maven-3.8.1-bin.tar.gz
-          sudo mv apache-maven-3.8.1 /opt/maven
-          sudo ln -s /opt/maven/bin/mvn /usr/local/bin/mvn
+          mkdir -p bin
+          javac -d bin src/**/*.java  # Компилируем все исходники в папке src в папку bin
 
-      # Шаг 4: Собираем проект с помощью Maven
-      - name: Build with Maven
-        run: mvn clean install -DskipTests=true  # Не запускаем тесты на этапе сборки
+      # Шаг 4: Запуск тестов
+      - name: Run tests
+        run: |
+          # Предполагается, что тесты находятся в src/test
+          javac -cp bin:lib/junit-4.13.2.jar -d bin src/test/**/*.java  # Компилируем тесты
+          java -cp bin:lib/junit-4.13.2.jar org.junit.runner.JUnitCore src.test.MainTest  # Запуск тестов
 
-      # Шаг 5: Запуск тестов с помощью Maven
-      - name: Run tests with Maven
-        run: mvn test
-
-      # Шаг 6: Архивируем артефакты (если нужно)
-      - name: Upload build artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: calculator-artifact
-          path: target/calculator-1.0-SNAPSHOT.jar
