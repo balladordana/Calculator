@@ -1,6 +1,6 @@
-package test;
+package test.java.test;
 
-import main.Calculator;
+import main.java.main.Calculator;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
