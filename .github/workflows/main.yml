@@ -22,9 +22,11 @@ jobs:
 
       # Шаг 3: Установка Maven
       - name: Set up Maven
-        uses: actions/setup-java@v3
-        with:
-          maven-version: '3.8.1'
+        run: |
+          wget https://dlcdn.apache.org/maven/maven-3/3.8.1/binaries/apache-maven-3.8.1-bin.tar.gz
+          tar -xvzf apache-maven-3.8.1-bin.tar.gz
+          sudo mv apache-maven-3.8.1 /opt/maven
+          sudo ln -s /opt/maven/bin/mvn /usr/local/bin/mvn
 
       # Шаг 4: Собираем проект с помощью Maven
       - name: Build with Maven
