@@ -29,19 +29,10 @@ jobs:
       # Шаг 3: Компиляция исходного кода
       - name: Compile Java code
         run: |
-          mkdir -p bin
           javac -d bin src/**/*.java  # Компилируем все исходники в папке src в папку bin
 
       # Шаг 4: Компиляция тестов и запуск с JUnit 5
       - name: Run tests
         run: |
-          mkdir -p bin/test
-          javac -cp bin:lib/junit-jupiter-api-5.11.4.jar:lib/junit-jupiter-engine-5.11.4.jar:lib/hamcrest-core-1.3.jar -d bin/test src/test/**/*.java  # Компиляция тестов
-          java -cp bin:test:lib/junit-jupiter-api-5.11.4.jar:lib/junit-jupiter-engine-5.11.4.jar:lib/hamcrest-core-1.3.jar org.junit.jupiter.api.Test src/test/MainTest  # Запуск тестов
-
-      # Шаг 5: Архивируем артефакты (если нужно)
-      - name: Upload build artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: calculator-artifact
-          path: bin/  # Архивируем папку с скомпилированным кодом (если необходимо)
+          javac -cp lib/junit-jupiter-api-5.11.4.jar:lib/junit-jupiter-engine-5.11.4.jar:lib/hamcrest-core-1.3.jar -d bin/test src/test/**/*.java  # Компиляция тестов
+          java -cp lib/junit-jupiter-api-5.11.4.jar:lib/junit-jupiter-engine-5.11.4.jar:lib/hamcrest-core-1.3.jar org.junit.jupiter.api.Test src/test/MainTest  # Запуск тестов
