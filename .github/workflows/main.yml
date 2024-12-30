@@ -8,23 +8,31 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # Можно использовать windows-latest или macos-latest для других операционных систем
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]  # Запуск на нескольких ОС
+        os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
-      # Шаг 1: Клонирование репозитория
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Шаг 2: Установка JDK 17
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
-          java-version: '17'  # Укажите вашу версию Java
-          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Create bin directory
+        run: mkdir -p bin
+
+      - name: Download JUnit 5.11.4 JARs and dependencies
+        run: |
+          curl -L -o lib/junit-jupiter-api-5.11.4.jar https://repo1.maven.org/maven2/org/junit/jupiter/junit-jupiter-api/5.11.4/junit-jupiter-api-5.11.4.jar
+          curl -L -o lib/junit-jupiter-engine-5.11.4.jar https://repo1.maven.org/maven2/org/junit/jupiter/junit-jupiter-engine/5.11.4/junit-jupiter-engine-5.11.4.jar
+          curl -L -o lib/junit-platform-console-standalone-1.11.4.jar https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.11.4/junit-platform-console-standalone-1.11.4.jar
+          curl -L -o lib/hamcrest-core-1.3.jar https://repo1.maven.org/maven2/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar
+          curl -L -o lib/apiguardian-api-1.1.2.jar https://repo1.maven.org/maven2/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar
 
       - name: Compile Java code
         run: |
@@ -32,8 +40,8 @@ jobs:
 
       - name: Compile tests with JUnit 5.11.4
         run: |
-          javac -cp "bin:lib/junit-jupiter-api-5.11.4.jar:lib/junit-jupiter-engine-5.11.4.jar:lib/junit-platform-console-standalone-1.11.4.jar:lib/hamcrest-core-1.3.jar" -d bin/test src/test/java/**/*.java
+          javac -cp "bin:lib/junit-jupiter-api-5.11.4.jar:lib/junit-jupiter-engine-5.11.4.jar:lib/junit-platform-console-standalone-1.11.4.jar:lib/hamcrest-core-1.3.jar:lib/apiguardian-api-1.1.2.jar" -d bin/test src/test/java/**/*.java
 
       - name: Run tests with JUnit 5.11.4
         run: |
-          java -cp "bin:test:lib/junit-jupiter-api-5.11.4.jar:lib/junit-jupiter-engine-5.11.4.jar:lib/junit-platform-console-standalone-1.11.4.jar:lib/hamcrest-core-1.3.jar" org.junit.platform.console.ConsoleLauncher --scan-classpath
+          java -cp "bin:test:lib/junit-jupiter-api-5.11.4.jar:lib/junit-jupiter-engine-5.11.4.jar:lib/junit-platform-console-standalone-1.11.4.jar:lib/hamcrest-core-1.3.jar:lib/apiguardian-api-1.1.2.jar" org.junit.platform.console.ConsoleLauncher --scan-classpath
