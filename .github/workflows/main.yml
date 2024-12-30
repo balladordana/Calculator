@@ -26,10 +26,10 @@ jobs:
           mkdir -p bin
           javac -d bin src/**/*.java  # Компилируем все исходники в папке src в папку bin
 
-      # Шаг 4: Запуск тестов
+      # Шаг 4: Компиляция тестов и запуск с JUnit 5
       - name: Run tests
         run: |
-          # Предполагается, что тесты находятся в src/test
-          javac -cp bin:lib/junit-4.13.2.jar -d bin src/test/**/*.java  # Компилируем тесты
-          java -cp bin:lib/junit-4.13.2.jar org.junit.runner.JUnitCore src.test.MainTest  # Запуск тестов
+          mkdir -p bin/test
+          javac -cp bin:lib/junit-jupiter-api-5.11.4.jar:lib/junit-jupiter-engine-5.11.4.jar:lib/hamcrest-core-1.3.jar -d bin/test src/test/**/*.java  # Компиляция тестов
+          java -cp bin:test:lib/junit-jupiter-api-5.11.4.jar:lib/junit-jupiter-engine-5.11.4.jar:lib/hamcrest-core-1.3.jar org.junit.jupiter.api.Test src/test/MainTest  # Запуск тестов
 
